@@ -4,13 +4,7 @@ Here is an example of adopting the GA4GH API to an existing and external project
 
 ## Prerequisites
 
-We'll need a copy of the GA4GH schemas:
-
-```
-git clone https://github.com/ga4gh/schemas.git
-```
-
-We'll use the _protoc_ utility to compile the schema definitions.  Please see these instructions to make sure that the _protoc_ command is available on your system: https://github.com/ga4gh/schemas/blob/master/doc/source/appendix/swagger.rst#installing-prerequisites.
+We'll use the Protocol Buffer compiler utility to compile the schema definitions.  Please see [these](https://github.com/ga4gh/schemas/blob/master/doc/source/appendix/swagger.rst#installing-prerequisites) instructions to make sure that the `protoc` command is available on your system.
 
 We'll use *swagger-codegen* to create our template Python-based server code; just being able to execute its jar file will suffice.  Here's some commands to create the jar file:
 
@@ -23,7 +17,7 @@ mvn clean package
 
 ## Instructions
 
-First, we have to take the schemas [the \*.proto files in the 'schemas' repository], and produce swagger API definitions [\*.swagger.json files] from them, via the _protoc_ utility.
+First, we have to take the schemas [the \*.proto files in the 'schemas' repository], and produce swagger API definitions [\*.swagger.json files] from them, via the `protoc` utility.
 
 ```
 git clone https://github.com/ga4gh/schemas.git
@@ -31,13 +25,13 @@ cd schemas
 mkdir -p target/swagger
 ```
 
-Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as many files.  I've manually combined them all in to 1 file called *all_services.proto*.  Let's copy that file to the same location as the others:
+Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as [many files](https://github.com/ga4gh/schemas/tree/master/src/main/proto/ga4gh).  I've manually combined them all in to 1 file called *all_services.proto*.  Let's copy that file to the same location as the others:
 
 ```
 cp path/to/all_services.proto ./src/main/proto/ga4gh
 ```
 
-Now we use the *protoc* utility:
+Now we use the `protoc` utility:
 
 ```
 protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_service.proto
