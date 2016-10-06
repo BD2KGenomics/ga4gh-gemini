@@ -46,7 +46,9 @@ Now we use the all_services.swagger.json swagger file to produce stub server cod
 To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the -c option; we'll call it temp.json.
 
 ```
-java -jar swagger-codegen.jar generate -i schemas/target/swagger/ga4gh/all_services.swagger.json -l python-flask -o server -c temp.json
+java -jar swagger-codegen.jar generate\
+  -i schemas/target/swagger/ga4gh/all_services.swagger.json\
+  -l python-flask -o server -c temp.json
 ```
 
 The folder "server" should then be a Python flask-based stub server that one needs to modify.  It needs to be made so that the server implements the GA4GH interface, and calls the Gemini database in the background.
@@ -62,7 +64,9 @@ Also, go inside each one of those files and change the paramaters to each functi
 Now we load an example VCF file into the gemini SQLite database:
 
 ```
-gemini load -v file.vcf my.db
+wget https://github.com/ga4gh/server/releases/download/data/ga4gh-example-data_4.5.tar
+tar xf ga4gh-example-data_4.5.tar
+gemini load -v ga4gh-example-data/chr1.vcf.gz my.db
 ```
 
 Start the server with:
