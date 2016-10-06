@@ -40,17 +40,17 @@ protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_services.prot
 This should produce a directory 'ga4gh', and inside it, all_services.swagger.json ; this is the swagger API service definition file.
 
 
-Now we use the all_services.swagger.json swagger file from step 1 to produce stub server code, via the _swagger-codegen.jar_ utility.
+Now we use the all_services.swagger.json swagger file to produce stub server code, via the `swagger-codegen.jar` utility.
 
-To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the -c option; we'll call it temp.json .
+To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the -c option; we'll call it temp.json.
 
 ```
-java -jar swagger-codegen.jar generate -i schemas/target/swagger/ga4gh/all_service.swagger.json -l python-flask -o /tmp/server -c temp.json
+java -jar swagger-codegen.jar generate -i schemas/target/swagger/ga4gh/all_services.swagger.json -l python-flask -o server -c temp.json
 ```
 
-The folder "server" should then be a Python flask-based stub server that one needs to modify.  You need to make it so that the server implements the GA4GH interface, and calls the Gemini database in the background.
+The folder "server" should then be a Python flask-based stub server that one needs to modify.  It needs to be made so that the server implements the GA4GH interface, and calls the Gemini database in the background.
 
-Rename all of the modules in server/controllers/* so that they go from like_this_controller.py to LikeThis_controller.py .  The reason this step is needed, is because, for some reason, the generated server code expects the modules to look like that, and I don't know how to make it expect otherwise, so this is a workaround.
+Rename all of the modules in server/controllers/\* so that they go from *like_this_controller.py* to *LikeThis_controller.py*.  The reason this step is needed, is because, for some reason, the generated server code expects the modules to look like that, and I don't know how to make it (the swagger-codegen.jar utility) expect otherwise, so this is a workaround.
 
 ```
 mv server/controllers/read_service_controller.py server/controllers/ReadService_controller.py
@@ -70,6 +70,4 @@ Start the server with:
 python server/app.py
 ```
 
-Navigate to http://localhost:8080/ui/
-
-Edit the files under 'controllers' in your stub server.  Their names may need to be modified from something_like_this_controller.py to SomethingLikeThis_controller.py .  Inside each file though, you may have to change variable names from CamelCase to under_score_case
+Navigate to http://localhost:8080/ui/ and you'll see your documentation for your api.
