@@ -36,6 +36,8 @@ Now we use the `protoc` utility; the output directory will be the current direct
 
 ```
 protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_services.proto
+# If you wanted to process more than one *.proto file, you can do
+# protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/*service.proto
 ```
 
 This should produce a directory 'ga4gh', and inside it, all_services.swagger.json ; this is the swagger API service definition file.
