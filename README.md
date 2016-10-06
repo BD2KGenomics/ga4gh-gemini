@@ -1,6 +1,6 @@
-# GA4GH API Example: gemini database
+# GA4GH API Example: Gemini database
 
-Here is an example of adopting the GA4GH API to an existing and external project: the Gemini software framework for exploring genome variation.
+Here is an example of adopting the GA4GH API to an existing and external project: the [Gemini]( software framework for exploring genome variation.
 
 ## Prerequisites
 
@@ -25,22 +25,22 @@ cd schemas
 mkdir -p target/swagger
 ```
 
-Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as [many files](https://github.com/ga4gh/schemas/tree/master/src/main/proto/ga4gh).  I've manually combined them all in to 1 file called *all_services.proto*.  Let's copy that file to the same location as the others:
+Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as [many files](https://github.com/ga4gh/schemas/tree/master/src/main/proto/ga4gh).  I've manually combined them all in to 1 file called [*all_services.proto*](https://github.com/BD2KGenomics/ga4gh-gemini/blob/master/all_service.proto).  Let's copy that file to the same location as the others:
 
 ```
 cp path/to/all_services.proto ./src/main/proto/ga4gh
 ```
 
-Now we use the `protoc` utility:
+Now we use the `protoc` utility; the output directory will be the current directory, and the input file will be that all_services.proto file:
 
 ```
-protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_service.proto
+protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_services.proto
 ```
 
-This should produce a directory 'ga4gh', and inside it, all_service.swagger.json ; this is the swagger API service definition file.
+This should produce a directory 'ga4gh', and inside it, all_services.swagger.json ; this is the swagger API service definition file.
 
 
-Now we use the all_service.swagger.json swagger file from step 1 to produce stub server code, via the _swagger-codegen.jar_ utility.
+Now we use the all_services.swagger.json swagger file from step 1 to produce stub server code, via the _swagger-codegen.jar_ utility.
 
 To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the -c option; we'll call it temp.json .
 
