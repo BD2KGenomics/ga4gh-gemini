@@ -20,6 +20,7 @@ mvn clean package
 First, we have to take the schemas [the \*.proto files in the 'schemas' repository], and produce swagger API definitions [\*.swagger.json files] from them, via the `protoc` utility.
 
 ```
+cd ..
 git clone https://github.com/ga4gh/schemas.git
 cd schemas
 mkdir -p target/swagger
