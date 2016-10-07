@@ -1,6 +1,6 @@
 # GA4GH API Example: Gemini database
 
-Here is an example of adopting the GA4GH API to an existing and external project: the [Gemini]( software framework for exploring genome variation.
+Here is an example of adopting the GA4GH API to an existing and external project: the [Gemini](https://github.com/arq5x/gemini) software framework for exploring genome variation.
 
 ## Prerequisites
 
