@@ -1,3 +1,10 @@
+// Note: This is likely not ideal.  The only reason why this file is here is
+// b/c of an apparent limitation of swagger-codegen-cl.jar's --input-spec
+// option: it only lets you specify 1 *.swagger.json file.  I've since learned
+// from those knowledgable however, that I'm supposed to use $ref to make the 1
+// file point to arbitrary other ones, so there may be no need for this file
+// anymore.  I don't know how to use $ref yet though, so this will do I guess
+// for now.
 syntax = "proto3";
 
 package ga4gh;
