@@ -5,6 +5,7 @@
 // file point to arbitrary other ones, so there may be no need for this file
 // anymore.  I don't know how to use $ref yet though, so this will do I guess
 // for now.
+// See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#fixed-fields-12
 syntax = "proto3";
 
 package ga4gh;
