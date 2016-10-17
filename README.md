@@ -13,6 +13,9 @@ git clone https://github.com/swagger-api/swagger-codegen.git
 cd swagger-codegen
 mvn clean package
 # java -jar ./modules/swagger-codegen-cli/target/swagger-codegen-cli.jar help
+# Or..
+# wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar -O swagger-codegen-cli.jar
+# java -jar swagger-codegen-cli.jar help
 ```
 
 ## Instructions
