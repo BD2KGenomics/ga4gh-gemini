@@ -6,7 +6,7 @@ Here is an example of adopting the GA4GH API to an existing and external project
 
 We'll use the Protocol Buffer compiler utility to compile the schema definitions.  Please see [these](https://github.com/ga4gh/schemas/blob/master/doc/source/appendix/swagger.rst#installing-prerequisites) instructions to make sure that the `protoc` command is available on your system.
 
-We'll use [swagger-codegen](https://github.com/swagger-api/swagger-codegen) to create our template Python-based server code; just being able to execute its jar file will suffice.  Here's some commands to create the jar file:
+We'll use [swagger-codegen](https://github.com/swagger-api/swagger-codegen) to create our template Python-based server code; just being able to execute its jar file will suffice.  Here's some commands to create or download the jar file:
 
 ```
 git clone https://github.com/swagger-api/swagger-codegen.git
